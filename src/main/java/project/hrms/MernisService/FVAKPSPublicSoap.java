@@ -1,4 +1,4 @@
-package project.MernisService;
+package project.hrms.MernisService;
 
 //----------------------------------------------------
 //
@@ -13,12 +13,8 @@ package project.MernisService;
 
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.serialization.*;
-import org.ksoap2.transport.*;
-import org.kxml2.kdom.Element;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 

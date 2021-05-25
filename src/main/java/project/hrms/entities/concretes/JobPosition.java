@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -22,7 +22,13 @@ public class JobPosition {
     @Column(name="job_title")
     private String jobTitle;
 
-    @Column(name="created_at")
-    private Date createdAt;
+    @Column(name="created_at", columnDefinition = "Date default CURRENT_DATE")
+    private LocalDate createdAt = LocalDate.now();
+
+    @Column(name="is_verified", columnDefinition = "boolean default true")
+    private boolean isVerified = true;
+
+    @Column(name="is_deleted", columnDefinition = "boolean default true")
+    private boolean isDeleted=false;
 
 }

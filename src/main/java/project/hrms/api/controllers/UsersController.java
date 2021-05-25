@@ -2,15 +2,14 @@ package project.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import project.hrms.business.abstracts.UserService;
+import project.hrms.core.utilities.results.DataResult;
 import project.hrms.entities.concretes.User;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/users/")
 public class UsersController {
 
@@ -21,28 +20,14 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping("getall")
-    public List<User> getAll(){
-       return userService.getAll();
-    }
-
     @GetMapping("get")
-    public User get(int id){
+    public DataResult<User> get(int id) {
         return userService.get(id);
     }
 
     @PostMapping("add")
-    public void add(User user){
+    public void add(@RequestBody User user) {
         userService.add(user);
     }
 
-    @PostMapping("delete")
-    public void delete(User user){
-        userService.delete(user);
-    }
-
-    @PostMapping("update")
-    public void update(User user){
-        userService.update(user);
-    }
 }

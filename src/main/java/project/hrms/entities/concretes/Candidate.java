@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -26,10 +26,14 @@ public class Candidate extends User {
     @Column(name="national_id")
     private String nationalId;
 
-    @Column(name="is_verified")
-    private boolean isVerified;
-
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
+    public Candidate(String email, String password, String firstName, String lastName, String nationalId, LocalDate dateOfBirth) {
+        super(email, password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nationalId = nationalId;
+        this.dateOfBirth = dateOfBirth;
+    }
 }

@@ -2,14 +2,14 @@ package project.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import project.hrms.business.abstracts.SystemPersonnelService;
+import project.hrms.core.utilities.results.DataResult;
 import project.hrms.entities.concretes.SystemPersonnel;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/systempersonnels/")
 public class SystemPersonnelsController {
 
@@ -22,31 +22,31 @@ public class SystemPersonnelsController {
 
 
     @GetMapping("getall")
-    public List<SystemPersonnel> getAll(){
+    public DataResult<List<SystemPersonnel>> getAll(){
         return systemPersonnelService.getAll();
     }
 
 
     @GetMapping("get")
-    public SystemPersonnel get(int id){
+    public DataResult<SystemPersonnel> get(int id){
         return systemPersonnelService.get(id);
     }
 
 
-    @GetMapping("add")
-    public void add(SystemPersonnel systemPersonnel){
+    @PostMapping("add")
+    public void add(@RequestBody SystemPersonnel systemPersonnel){
         systemPersonnelService.add(systemPersonnel);
     }
 
 
-    @GetMapping("update")
-    public void update(SystemPersonnel systemPersonnel){
+    @PostMapping("update")
+    public void update(@RequestBody SystemPersonnel systemPersonnel){
         systemPersonnelService.update(systemPersonnel);
     }
 
 
-    @GetMapping("delete")
-    public void delete(SystemPersonnel systemPersonnel){
+    @PostMapping("delete")
+    public void delete(@RequestBody SystemPersonnel systemPersonnel){
         systemPersonnelService.delete(systemPersonnel);
     }
 }

@@ -1,14 +1,15 @@
 package project.hrms.business.abstracts;
 
-import project.hrms.entities.concretes.Employer;
+import project.hrms.core.utilities.results.DataResult;
+import project.hrms.core.utilities.results.Result;
 import project.hrms.entities.concretes.SystemPersonnel;
 
 import java.util.List;
 
 public interface SystemPersonnelService {
-    List<SystemPersonnel> getAll();
-    SystemPersonnel get(int id);
-    String add(SystemPersonnel systemPersonnel);
-    String delete(SystemPersonnel systemPersonnel);
-    String update(SystemPersonnel systemPersonnel);
+    DataResult<List<SystemPersonnel>> getAll();
+    DataResult<SystemPersonnel> get(int id);
+    Result add(SystemPersonnel systemPersonnel);
+    Result delete(SystemPersonnel systemPersonnel);
+    Result update(SystemPersonnel systemPersonnel);
 }

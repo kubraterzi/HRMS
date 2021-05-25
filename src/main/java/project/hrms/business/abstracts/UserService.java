@@ -1,15 +1,17 @@
 package project.hrms.business.abstracts;
 
+import project.hrms.core.utilities.results.DataResult;
+import project.hrms.core.utilities.results.Result;
+import project.hrms.entities.concretes.Candidate;
 import project.hrms.entities.concretes.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> getAll();
-    User get(int id);
-    String add(User user);
-    String delete(User user);
-    String update(User user);
+    DataResult<User> get(int id);
+    Result add(User user);
+    DataResult<User> getByMail(String email);
+    Result checkUserExistsByEmail(String email);
 
 }

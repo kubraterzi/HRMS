@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -20,17 +20,18 @@ public class VerificateEmployerBySystemPersonnel {
     @Column(name="id")
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private Employer employerId;
+    @Column(name="employer_id")
+    private int employerId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private SystemPersonnel systempersonnelId;
+    @Column(name="systempersonnel_id")
+    private int systempersonnelId;
 
-    @Column(name="created_at")
-    private Date createdAt;
+    @Column(name="created_at", columnDefinition = "Date default CURRENT_DATE")
+    private LocalDate createdAt = LocalDate.now();
 
-    @Column(name="is_confirmed")
-    private boolean isConfirmed;
+    @Column(name="is_verified", columnDefinition = "boolean default true")
+    private boolean isVerified = true;
+
+    @Column(name="is_deleted", columnDefinition = "boolean default true")
+    private boolean isDeleted=false;
 }

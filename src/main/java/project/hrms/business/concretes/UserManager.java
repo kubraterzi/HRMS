@@ -3,7 +3,9 @@ package project.hrms.business.concretes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.hrms.business.abstracts.UserService;
+import project.hrms.core.utilities.results.*;
 import project.hrms.dataAccess.abstracts.UserDao;
+import project.hrms.entities.concretes.Candidate;
 import project.hrms.entities.concretes.User;
 
 import java.util.List;
@@ -21,31 +23,30 @@ public class UserManager implements UserService {
 
 
     @Override
-    public List<User> getAll() {
-        return userDao.findAll();
+    public DataResult<User> get(int id) {
+        return new SuccessDataResult<User>(this.userDao.findById(id).get());
     }
 
     @Override
-    public User get(int id) {
-        return userDao.findById(id).get();
-    }
-
-    @Override
-    public String add(User user) {
+    public Result add(User user) {
 
         userDao.save(user);
-        return "Added.";
+        return new SuccessResult("Added.");
     }
 
-    @Override
-    public String delete(User user) {
-        userDao.delete(user);
-        return "Deleted";
+
+    public DataResult<User> getByMail(String email) {
+        return new SuccessDataResult<User>(this.userDao.findByEmail(email));
     }
 
-    @Override
-    public String update(User user) {
-        userDao.save(user);
-        return "Updated.";
+
+    public  Result checkUserExistsByEmail(String email){
+
+        var userEmail = getByMail(email);
+        if(userEmail.getData() !=null){
+           return new ErrorResult("This email address has been used before.");
+        }
+
+        return new SuccessResult();
     }
 }

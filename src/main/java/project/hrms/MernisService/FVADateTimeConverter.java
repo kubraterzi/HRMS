@@ -1,4 +1,4 @@
-package project.MernisService;
+package project.hrms.MernisService;
 
 //----------------------------------------------------
 //

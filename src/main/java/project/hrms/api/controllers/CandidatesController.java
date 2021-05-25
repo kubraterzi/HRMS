@@ -2,15 +2,14 @@ package project.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import project.hrms.business.abstracts.CandidateService;
+import project.hrms.core.utilities.results.DataResult;
 import project.hrms.entities.concretes.Candidate;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/candidates/")
 public class CandidatesController {
 
@@ -22,27 +21,27 @@ public class CandidatesController {
     }
 
     @GetMapping("getall")
-    public List<Candidate> getAll(){
-        return candidateService.getAll();
+    public DataResult<List<Candidate>> getAll(){
+        return this.candidateService.getAll();
     }
 
     @GetMapping("get")
-    public Candidate get(int id){
-        return candidateService.get(id);
+    public DataResult<Candidate> get(int id){
+        return this.candidateService.get(id);
     }
 
     @PostMapping("add")
-    public void add(Candidate candidate){
+    public void add(@RequestBody Candidate candidate){
         candidateService.add(candidate);
     }
 
     @PostMapping("delete")
-    public void delete(Candidate candidate){
+    public void delete(@RequestBody Candidate candidate){
         candidateService.delete(candidate);
     }
 
     @PostMapping("update")
-    public void update(Candidate candidate){
+    public void update(@RequestBody Candidate candidate){
         candidateService.update(candidate);
     }
 }

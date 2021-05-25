@@ -3,6 +3,10 @@ package project.hrms.business.concretes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.hrms.business.abstracts.SystemPersonnelService;
+import project.hrms.core.utilities.results.DataResult;
+import project.hrms.core.utilities.results.Result;
+import project.hrms.core.utilities.results.SuccessDataResult;
+import project.hrms.core.utilities.results.SuccessResult;
 import project.hrms.dataAccess.abstracts.SystemPersonnelDao;
 import project.hrms.entities.concretes.SystemPersonnel;
 
@@ -19,30 +23,30 @@ public class SystemPersonnelManager implements SystemPersonnelService {
     }
 
     @Override
-    public List<SystemPersonnel> getAll() {
-        return systemPersonnelDao.findAll();
+    public DataResult<List<SystemPersonnel>> getAll() {
+        return new SuccessDataResult<List<SystemPersonnel>>(systemPersonnelDao.findAll());
     }
 
     @Override
-    public SystemPersonnel get(int id) {
-        return systemPersonnelDao.findById(id).get();
+    public DataResult<SystemPersonnel> get(int id) {
+        return new SuccessDataResult<SystemPersonnel>(systemPersonnelDao.findById(id).get());
     }
 
     @Override
-    public String add(SystemPersonnel systemPersonnel) {
+    public Result add(SystemPersonnel systemPersonnel) {
         systemPersonnelDao.save(systemPersonnel);
-        return "Added.";
+        return new SuccessResult("Added.");
     }
 
     @Override
-    public String delete(SystemPersonnel systemPersonnel) {
+    public Result delete(SystemPersonnel systemPersonnel) {
         systemPersonnelDao.delete(systemPersonnel);
-        return "Deleted.";
+        return new SuccessResult("Deleted.");
     }
 
     @Override
-    public String update(SystemPersonnel systemPersonnel) {
+    public Result update(SystemPersonnel systemPersonnel) {
         systemPersonnelDao.save(systemPersonnel);
-        return "Updated.";
+        return new SuccessResult("Updated.");
     }
 }

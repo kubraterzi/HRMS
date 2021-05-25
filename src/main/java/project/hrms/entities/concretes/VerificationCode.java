@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Data
 @Entity
@@ -20,12 +22,28 @@ public class VerificationCode {
     @Column(name="id")
     private int id;
 
+    @Column(name = "user_id")
+    private int userId;
+
     @Column(name="verification_code")
     private String verificationCode;
 
-    @Column(name="is_confirmed")
-    private boolean isConfirmed;
+    @Column(name="is_verified", columnDefinition = "boolean default true")
+    private boolean isVerified = true;
 
-    @Column(name="created_at")
-    private Date createdAt;
+    @Column(name="expression_date")
+    private LocalDate expressionDate = LocalDate.now();
+
+    @Column(name = "confirm_date")
+    private LocalDate confirmDate;
+
+    @Column(name="is_deleted", columnDefinition = "boolean default true")
+    private boolean isDeleted=false;
+
+    public VerificationCode(int userId, String verificationCode, boolean isVerified, boolean isDeleted) {
+        this.userId = userId;
+        this.verificationCode = verificationCode;
+        this.isVerified = isVerified;
+        this.isDeleted = isDeleted;
+    }
 }
