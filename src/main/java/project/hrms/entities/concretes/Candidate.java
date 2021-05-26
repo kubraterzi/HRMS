@@ -29,11 +29,4 @@ public class Candidate extends User {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    public Candidate(String email, String password, String firstName, String lastName, String nationalId, LocalDate dateOfBirth) {
-        super(email, password);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nationalId = nationalId;
-        this.dateOfBirth = dateOfBirth;
-    }
 }

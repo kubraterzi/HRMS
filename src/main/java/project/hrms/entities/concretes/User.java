@@ -35,8 +35,4 @@ public class User {
     @Column(name="is_deleted", columnDefinition = "boolean default true")
     private boolean isDeleted=false;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
 }

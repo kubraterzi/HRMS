@@ -75,7 +75,8 @@ public class AuthManager implements AuthService {
             return new ErrorResult(checkUserEntry.getMessage());
         }
 
-        Candidate candidateInfo = new Candidate(registerForCandidateDto.getEmail(),registerForCandidateDto.getPassword(), registerForCandidateDto.getFirstName(), registerForCandidateDto.getLastName(), registerForCandidateDto.getNationalId(), registerForCandidateDto.getDateOfBirth());
+        Candidate candidateInfo = modelMapper.map(registerForCandidateDto, Candidate.class);
+
         this.candidateService.add(candidateInfo);
         this.verifyAccount(registerForCandidateDto);
         return new SuccessResult("Candidate is successfully registered.");
