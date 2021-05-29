@@ -32,7 +32,7 @@ public class User {
     @Column(name="is_verified", columnDefinition = "boolean default true")
     private boolean isVerified = true;
 
-    @Column(name="is_deleted", columnDefinition = "boolean default true")
+    @Column(name="is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted=false;
 
 }

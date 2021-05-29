@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name="user_id")
+@PrimaryKeyJoinColumn(name="id")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="candidates")

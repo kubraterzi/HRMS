@@ -10,22 +10,20 @@ import java.util.List;
 
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name="id")
+@Table(name="cities")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="employers")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAnnouncements"})
-public class Employer extends User {
+public class City {
 
-    @Column(name="website")
-    private String website;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
 
-    @Column(name="phone_number")
-    private String phoneNumber;
+    @Column(name = "city_name")
+    private String cityName;
 
-    @Column(name="company_name")
-    private String companyName;
-
-    @OneToMany(mappedBy = "employer")
+    @OneToMany(mappedBy = "city")
     private List<JobAnnouncement> jobAnnouncements;
 }

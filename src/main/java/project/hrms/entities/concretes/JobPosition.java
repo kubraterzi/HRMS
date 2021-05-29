@@ -1,17 +1,20 @@
 package project.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name="job_positions")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAnnouncements"})
 public class JobPosition {
 
     @Id
@@ -30,5 +33,8 @@ public class JobPosition {
 
     @Column(name="is_deleted", columnDefinition = "boolean default true")
     private boolean isDeleted=false;
+
+    @OneToMany(mappedBy = "jobPosition")
+    private List<JobAnnouncement> jobAnnouncements;
 
 }

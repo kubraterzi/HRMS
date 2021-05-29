@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name= "systempersonnels")
-@PrimaryKeyJoinColumn(name="user_id")
+@PrimaryKeyJoinColumn(name="id")
 @AllArgsConstructor
 @NoArgsConstructor
 public class SystemPersonnel extends User {
