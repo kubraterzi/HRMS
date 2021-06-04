@@ -1,6 +1,7 @@
 package project.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import project.hrms.business.abstracts.SystemPersonnelService;
@@ -22,14 +23,14 @@ public class SystemPersonnelsController {
 
 
     @GetMapping("getall")
-    public DataResult<List<SystemPersonnel>> getAll(){
-        return systemPersonnelService.getAll();
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(getAll());
     }
 
 
     @GetMapping("get")
-    public DataResult<SystemPersonnel> get(int id){
-        return systemPersonnelService.get(id);
+    public ResponseEntity<?> get(int id){
+        return ResponseEntity.ok(systemPersonnelService.get(id));
     }
 
 

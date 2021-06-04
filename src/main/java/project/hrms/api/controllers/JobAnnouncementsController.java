@@ -2,6 +2,7 @@ package project.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.hrms.business.abstracts.JobAnnouncementService;
 import project.hrms.core.utilities.results.DataResult;
@@ -23,39 +24,39 @@ public class JobAnnouncementsController {
 
 
     @GetMapping("getallbyactive")
-    public DataResult<List<JobAnnouncement>> getAllByActive(){
-        return this.jobAnnouncementService.getAllByActive();
+    public ResponseEntity<?> getAllByActive(){
+        return ResponseEntity.ok(this.jobAnnouncementService.getAllByActive());
     }
 
     @GetMapping("getalbyactiveandemployer")
-    public DataResult<List<JobAnnouncement>> getAllByActiveAndEmployer(@RequestParam int employerId){
-        return this.jobAnnouncementService.getAllByActiveAndEmployer(employerId);
+    public ResponseEntity<?> getAllByActiveAndEmployer(@RequestParam int employerId){
+        return ResponseEntity.ok(this.jobAnnouncementService.getAllByActiveAndEmployer(employerId));
     }
 
     @GetMapping("getallbyjobposition")
-    public DataResult<List<JobAnnouncement>> getAllByJobPosition(@RequestParam int jobPositionId){
-        return this.jobAnnouncementService.getAllByJobPosition(jobPositionId);
+    public ResponseEntity<?> getAllByJobPosition(@RequestParam int jobPositionId){
+        return ResponseEntity.ok(this.jobAnnouncementService.getAllByJobPosition(jobPositionId));
     }
 
     @GetMapping("getallbyannouncementdeadline")
-    public DataResult<List<JobAnnouncement>> getAllByAnnouncementDeadline(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
-        return this.jobAnnouncementService.getAllByAnnouncementDeadline(date);
-    }
-
-    @PostMapping("addjobannouncement")
-    public Result addJobAnnouncement(@RequestBody JobAnnouncement jobAnnouncement){
-        return this.jobAnnouncementService.addJobAnnouncement(jobAnnouncement);
+    public ResponseEntity<?> getAllByAnnouncementDeadline(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
+        return ResponseEntity.ok(this.jobAnnouncementService.getAllByAnnouncementDeadline(date));
     }
 
     @GetMapping("publishjobannouncement")
-    public Result publishJobAnnouncement(@RequestParam int jobAnnouncementId){
-        return this.jobAnnouncementService.publishJobAnnouncement(jobAnnouncementId);
+    public ResponseEntity<?> publishJobAnnouncement(@RequestParam int jobAnnouncementId){
+        return ResponseEntity.ok(this.jobAnnouncementService.publishJobAnnouncement(jobAnnouncementId));
     }
 
     @GetMapping("setpassivejobannouncement")
-    public Result setPassiveJobAnnouncement(@RequestParam int jobAnnouncementId){
-        return this.jobAnnouncementService.setPassiveJobAnnouncement(jobAnnouncementId);
+    public ResponseEntity<?> setPassiveJobAnnouncement(@RequestParam int jobAnnouncementId){
+        return ResponseEntity.ok(this.jobAnnouncementService.setPassiveJobAnnouncement(jobAnnouncementId));
     }
 
+
+    @PostMapping("addjobannouncement")
+    public ResponseEntity<?> addJobAnnouncement(@RequestBody JobAnnouncement jobAnnouncement){
+        return ResponseEntity.ok(this.jobAnnouncementService.addJobAnnouncement(jobAnnouncement));
+    }
 
 }
