@@ -75,9 +75,13 @@ public class AuthManager implements AuthService {
             return new ErrorResult(checkUserEntry.getMessage());
         }
 
-        Candidate candidateInfo = modelMapper.map(registerForCandidateDto, Candidate.class);
+//        Candidate candidateInfo = modelMapper.map(registerForCandidateDto, Candidate.class);
+//        this.candidateService.add(candidateInfo); -> nationalId int e çevirmeye çalışıp hata veriyor.
 
-        this.candidateService.add(candidateInfo);
+        this.candidateService.add(new Candidate(registerForCandidateDto.getEmail(), registerForCandidateDto.getPassword(),
+                registerForCandidateDto.getFirstName(),registerForCandidateDto.getLastName(), registerForCandidateDto.getNationalId(),
+                registerForCandidateDto.getDateOfBirth()));
+
         this.verifyAccount(registerForCandidateDto);
         return new SuccessResult("Candidate is successfully registered.");
 

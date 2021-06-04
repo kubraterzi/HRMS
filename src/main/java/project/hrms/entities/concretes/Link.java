@@ -1,5 +1,6 @@
 package project.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,34 +10,33 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name="users")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "links")
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Link {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
-    @Column(name="email")
-    private String email;
+    @Column(name = "account_name")
+    private String accountName;
 
-    @Column(name="password")
-    private String password;
+    @Column(name="link_url")
+    private String linkUrl;
 
     @Column(name="created_at", columnDefinition = "Date default CURRENT_DATE")
-    private LocalDate createdAt = LocalDate.now();
+    private LocalDate createdAt= LocalDate.now();
 
-    @Column(name="is_verified", columnDefinition = "boolean default true")
-    private boolean isVerified = true;
+    @Column(name = "is_active")
+    private boolean isActive;
 
     @Column(name="is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted=false;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name="candidate_id")
+    private Candidate candidate;
+
 }

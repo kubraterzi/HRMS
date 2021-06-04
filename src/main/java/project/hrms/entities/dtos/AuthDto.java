@@ -6,7 +6,7 @@ import project.hrms.entities.abstracts.Dto;
 @Data
 public class AuthDto implements Dto {
 
-    String email;
-    String password;
+    private String email;
+    private String password;
 
 }

@@ -1,5 +1,6 @@
 package project.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class City {
     @Column(name = "city_name")
     private String cityName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
     private List<JobAnnouncement> jobAnnouncements;
 }

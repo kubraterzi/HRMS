@@ -1,5 +1,7 @@
 package project.hrms;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +30,14 @@ public class HrmsApplication {
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
+    }
+
+    @Bean
+    public Cloudinary cloudinaryService(){
+        return new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "ddqz2auwh",
+                "api_key", "624596944412857",
+                "api_secret", "kAh8ps0kfuPCJB-vb0POGiRqGg8"));
     }
 
 }
